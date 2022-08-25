@@ -1,16 +1,10 @@
+import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-export const getStaticProps = async()=>{
-  const res=await fetch('https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users')
-  const data=await res.json()
-  return{
-    props:{
-      users:data
-    }
-  }
-}
-function Home ({users}:{users:any})  {
+
+const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -25,5 +19,3 @@ function Home ({users}:{users:any})  {
 }
 
 export default Home
-
-
