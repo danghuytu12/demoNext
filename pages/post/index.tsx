@@ -1,15 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
-export const getStaticProps = async()=>{
-  const res=await fetch('https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users')
-  const data=await res.json()
-  return{
-    props:{
-      users:data
-    }
-  }
+interface User{
+  [x: string]: any
+  id:number,
+  name:string,
+  image:string
 }
-function Home ({users}:{users:any})  {
+function Home({ users }: { users: User }) {
   return (
     <div >
       <Head>
@@ -18,19 +15,29 @@ function Home ({users}:{users:any})  {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {
-        users.map((user:any)=>{
+        users.map((user: User) => {
           return (
-            <Link href={'/post/'+user.id} key={user.id}>
+            <Link href={'/post/' + user.id} key={user.id}>
               <div className="ml-5 mt-5">Name: <span className="text-red-500 cursor-pointer ml-2">{user.name}</span></div>
             </Link>
           )
         })
       }
-      
+
     </div>
   )
 }
 
 export default Home
+
+export const getServerSideProps = async () => {
+  const res = await fetch('https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users')
+  const data = await res.json()
+  return {
+    props: {
+      users: data
+    }
+  }
+}
 
 

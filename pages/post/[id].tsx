@@ -1,37 +1,12 @@
 /* eslint-disable @next/next/no-typos */
 import Image from "next/image";
 import React from "react";
-export const getStaticPaths = async () => {
-  const res = await fetch(
-    "https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users"
-  );
-  const data = await res.json();
-  const paths = data.map((user: any) => {
-    return {
-      params: { id: user.id.toString() },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
-
-  const res = await fetch(
-    "https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users/" + id
-  );
-  const data = await res.json();
-  return {
-    props: {
-      user: data,
-    },
-  };
-};
-const Detail = ({ user }: { user: any }) => {
-  console.log("user", user);
+interface User {
+  id: number,
+  name: string,
+  image: string
+}
+const Detail = ({ user }: { user: User }) => {
 
   return (
     <>
@@ -52,5 +27,18 @@ const Detail = ({ user }: { user: any }) => {
     </>
   );
 };
-
 export default Detail;
+
+
+export const getServerSideProps = async (context: any) => {
+  const id = context.params.id;
+  const res = await fetch(
+    "https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users/" + id
+  );
+  const data = await res.json();
+  return {
+    props: {
+      user: data,
+    },
+  };
+};
