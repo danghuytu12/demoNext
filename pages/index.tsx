@@ -17,8 +17,9 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-      <Main onIncrease={handleIncrease} />
+      
       <div className="flex justify-center mt-10 ">Count:<p className="text-red-600 font-bold">{count}</p></div>
+      <Main onIncrease={handleIncrease} />
       
     </div>
   );
