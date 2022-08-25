@@ -1,9 +1,16 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 
-const Main = ({ count }: { count: number }) => {
-    console.log('ndnasjdnjsa')
+const Main = ({onIncrease}:{onIncrease:any}) => {
+  console.log('ndnasjdnjsa')
   return (
-      <div className="flex justify-center mt-10 ">Count:<p className="text-red-600 font-bold">{count}</p></div>
+    <div>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-10"
+        onClick={onIncrease}
+      >
+        Click
+      </button>
+    </div>
   );
 };
 

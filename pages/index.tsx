@@ -5,9 +5,9 @@ import Header from "./Header";
 import Main from "./Main";
 const Home: NextPage = () => {
   const [count, setCount] = useState(0);
-  const handleClick=useCallback(()=>{
-    setCount(count + 1);
-  },[])
+  const handleIncrease = useCallback(() => {
+    setCount(count=>count + 1);
+  }, [])
   return (
     <div>
       <Head>
@@ -17,13 +17,9 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-      <Main count={count} />
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-10"
-        onClick={handleClick}
-      >
-        Click
-      </button>
+      <Main onIncrease={handleIncrease} />
+      <div className="flex justify-center mt-10 ">Count:<p className="text-red-600 font-bold">{count}</p></div>
+      
     </div>
   );
 };
