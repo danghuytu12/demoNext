@@ -21,7 +21,7 @@ function Home ({users}:{users:any})  {
         users.map((user:any)=>{
           return (
             <Link href={'/post/'+user.id} key={user.id}>
-              <div className="flex justify-center">Name: <span className="text-red-500 cursor-pointer ">{user.name}</span></div>
+              <div className="ml-5 mt-5">Name: <span className="text-red-500 cursor-pointer ml-2">{user.name}</span></div>
             </Link>
           )
         })
