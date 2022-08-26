@@ -29,4 +29,16 @@ function Home({ todos }: { todos: Todo[] }) {
   );
 }
 
+export const getServerSideProps = async()=>{
+  const res=await fetch('https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users')
+  const data=await res.json()
+  return{
+    props:{
+      users:data
+    }
+  }
+}
+
 export default Home
+
+
