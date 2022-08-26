@@ -3,10 +3,9 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 interface Todo {
-  [x: string]: any;
-  id: number,
-  name?: String,
-  image?: String,
+  id: number;
+  name?: String;
+  image?: String;
 }
 
 function Home({ todos }: { todos: Todo[] }) {
@@ -18,7 +17,7 @@ function Home({ todos }: { todos: Todo[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {todos.map((todo:Todo) => {
+      {todos.map((todo: Todo) => {
         return (
           <div key={todo.id}>
             <p>Name: {todo.name}</p>
@@ -29,16 +28,16 @@ function Home({ todos }: { todos: Todo[] }) {
   );
 }
 
-export const getServerSideProps = async()=>{
-  const res=await fetch('https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users')
-  const data=await res.json()
-  return{
-    props:{
-      users:data
-    }
-  }
-}
+export const getServerSideProps = async () => {
+  const res = await fetch(
+    "https://62e9e38d3a5f1572e87056f4.mockapi.io/api/users"
+  );
+  const data = await res.json();
+  return {
+    props: {
+      todos: data,
+    },
+  };
+};
 
-export default Home
-
-
+export default Home;
