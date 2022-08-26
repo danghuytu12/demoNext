@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import Header from "./Header";
@@ -25,13 +26,7 @@ function Home({ todos }: { todos: Todo[] }) {
       </Head>
       <Header />
       <Main onIncrease={handleIncrease} count={count} />
-      {todos.map((todo: Todo) => {
-        return (
-          <div key={todo.id}>
-            <p>Name: {todo.name}</p>
-          </div>
-        );
-      })}
+      <Link href="/post"><button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-10 my-20">Post</button></Link>
     </div>
   );
 }
