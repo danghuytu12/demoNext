@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+
 interface Todo {
   [x: string]: any;
   id: number,
@@ -8,7 +9,7 @@ interface Todo {
   image?: String,
 }
 
-function Home({ todos }: { todos: Todo }) {
+function Home({ todos }: { todos: Todo[] }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,11 +18,10 @@ function Home({ todos }: { todos: Todo }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {todos.map((todo:any) => {
+      {todos.map((todo:Todo) => {
         return (
           <div key={todo.id}>
             <p>Name: {todo.name}</p>
-            <p className="text-blue-500">Date: {todo.createdAt}</p>
           </div>
         );
       })}
